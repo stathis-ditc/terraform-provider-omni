@@ -19,8 +19,8 @@ environments, only in development. Use at your own risk as it comes with no warr
 This provider is under development and currntly it is not avialble in any registry. To use it;
 
 1. Run `go install .`
-2. Find the GOBIN path where Go installs your binaries. If the GOBIN go environment variable is not set, use the default path, /Users/Username/go/bin
-3. Create in your home directory a new file .terraformrc and add the following contents
+2. Find the `GOBIN` path where Go installs your binaries. If the GOBIN go environment variable is not set, use the default path `/Users/<username>/go/bin`
+3. Create in your home directory a new file `.terraformrc` and add the following contents
 ```
 provider_installation {
 
