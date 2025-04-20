@@ -12,7 +12,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 
-	"github.com/stathis-ditc/terraform-provider-omni/pkg/omni"
+	"github.com/stathis-ditc/terraform-provider-omni/internal/omni"
 )
 
 func main() {
