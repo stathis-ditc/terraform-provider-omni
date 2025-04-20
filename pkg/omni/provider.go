@@ -2,11 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-package provider
+package omni
 
 import (
 	"context"
-	"net/http"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/ephemeral"
@@ -21,10 +20,10 @@ type omniProvider struct{}
 
 type omniProviderModel struct {
 	Endpoint          types.String `tfsdk:"endpoint"`
-	ServiceAccountKey types.String `tfsdk:service_account_key`
+	ServiceAccountKey types.String `tfsdk:"service_account_key"`
 }
 
-func (p *ScaffoldingProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
+func (p *omniProvider) Metadata(ctx context.Context, req provider.MetadataRequest, resp *provider.MetadataResponse) {
 	resp.TypeName = "omni"
 }
 
@@ -64,5 +63,7 @@ func (p *omniProvider) Functions(ctx context.Context) []func() function.Function
 }
 
 func New() func() provider.Provider {
-	return &omniProvider{}
+	return func() provider.Provider {
+		return &omniProvider{}
+	}
 }
