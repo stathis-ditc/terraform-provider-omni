@@ -5,9 +5,11 @@ go 1.24.1
 toolchain go1.24.2
 
 require (
+	github.com/blang/semver v3.5.1+incompatible
 	github.com/cosi-project/runtime v0.10.1
 	github.com/hashicorp/terraform-plugin-docs v0.21.0
 	github.com/hashicorp/terraform-plugin-framework v1.14.1
+	github.com/siderolabs/gen v0.8.0
 	github.com/siderolabs/omni/client v0.48.3
 )
 
@@ -84,7 +86,6 @@ require (
 	github.com/sasha-s/go-deadlock v0.3.5 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/siderolabs/crypto v0.5.1 // indirect
-	github.com/siderolabs/gen v0.8.0 // indirect
 	github.com/siderolabs/go-api-signature v0.3.6 // indirect
 	github.com/siderolabs/go-blockdevice/v2 v2.0.16 // indirect
 	github.com/siderolabs/go-pointer v1.0.1 // indirect

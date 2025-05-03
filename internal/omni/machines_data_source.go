@@ -42,7 +42,7 @@ func (d *machinesDataSource) Metadata(ctx context.Context, req datasource.Metada
 
 func (d *machinesDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "List all machines in the Omni cluster",
+		MarkdownDescription: "List all machines registered in Omni",
 		Attributes: map[string]schema.Attribute{
 			"machines": schema.ListNestedAttribute{
 				MarkdownDescription: "List of all machines",
@@ -117,4 +117,4 @@ func (d *machinesDataSource) Read(ctx context.Context, req datasource.ReadReques
 	data.Machines = machinesList
 
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-} 
+}

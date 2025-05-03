@@ -67,17 +67,7 @@ Currently, the provider supports the following features:
 ### Data Sources
 
 - `omni_machines` - List all machines in the Omni cluster
-
-Example:
-
-```hcl
-data "omni_machines" "example" {}
-
-output "connected_machines" {
-  description = "List of connected machines"
-  value = [for machine in data.omni_machines.example.machines : machine.id if machine.connected]
-}
-```
+- `omni_installation_media` Generate the schematic and pxe url
 
 ## Provider Configuration
 

@@ -111,6 +111,7 @@ func (p *omniProvider) EphemeralResources(ctx context.Context) []func() ephemera
 func (p *omniProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		NewMachinesDataSource,
+		NewInstallationMediaDataSource,
 	}
 }
 
@@ -122,7 +123,7 @@ func (p *omniProvider) Shutdown(ctx context.Context) error {
 	if p.client != nil {
 		return p.client.Close()
 	}
-	
+
 	return nil
 }
 
