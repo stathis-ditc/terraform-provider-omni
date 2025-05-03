@@ -1,0 +1,54 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+# Add permissions block to explicitly set required permissions
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        id: get_version
+        run: |
+          VERSION=$(cat CHANGELOG.md | grep -m 1 '^## v' | sed 's/^## v\([0-9.]*\).*/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Get changelog content
+        id: get_changelog
+        run: |
+          # Get the content between the current version and the next version
+          VERSION=$(cat CHANGELOG.md | grep -m 1 '^## v' | sed 's/^## v\([0-9.]*\).*/\1/')
+          CONTENT=$(awk -v ver="$VERSION" '
+            /^## v/ { 
+              if ($0 ~ ver) { p=1; next }
+              else if (p) { exit }
+            }
+            p && !/^## v/ { print }
+          ' CHANGELOG.md | sed '/^$/d')
+          echo "changelog_content<<EOF" >> $GITHUB_OUTPUT
+          echo "$CONTENT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: v${{ steps.get_version.outputs.version }}
+          body: |
+            ## Changes
+            ${{ steps.get_changelog.outputs.changelog_content }}
+          tag_name: v${{ steps.get_version.outputs.version }}
+          draft: false
+          prerelease: ${{ contains(steps.get_version.outputs.version, '-') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
