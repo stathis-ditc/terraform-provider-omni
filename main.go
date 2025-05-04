@@ -3,6 +3,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 // Package main is the entrypoint for the provider server.
+
+// Generate the documentation for the provider
+//
+//go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs generate --provider-name omni
 package main
 
 import (
@@ -11,7 +15,6 @@ import (
 	"log"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-
 	"github.com/stathis-ditc/terraform-provider-omni/internal/omni"
 )
 

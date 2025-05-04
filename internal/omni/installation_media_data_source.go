@@ -52,7 +52,7 @@ func (d *installationMediaDataSource) Metadata(ctx context.Context, req datasour
 
 func (d *installationMediaDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "",
+		MarkdownDescription: "Generate the schematic and pxe url of the installation media",
 		Attributes: map[string]schema.Attribute{
 			"id": schema.StringAttribute{
 				MarkdownDescription: "ID",
