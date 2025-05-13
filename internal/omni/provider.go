@@ -55,7 +55,7 @@ func (p *omniProvider) Schema(ctx context.Context, req provider.SchemaRequest, r
 func (p *omniProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
 	version.Name = "terraform-provider-omni"
 	version.SHA = "build SHA"
-	version.Tag = "v0.1.0"
+	version.Tag = "v0.2.0"
 
 	var config omniProviderModel
 	resp.Diagnostics.Append(req.Config.Get(ctx, &config)...)
@@ -101,7 +101,9 @@ func (p *omniProvider) Configure(ctx context.Context, req provider.ConfigureRequ
 }
 
 func (p *omniProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return []func() resource.Resource{}
+	return []func() resource.Resource{
+		NewApplyYamlResource,
+	}
 }
 
 func (p *omniProvider) EphemeralResources(ctx context.Context) []func() ephemeral.EphemeralResource {
