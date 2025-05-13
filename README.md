@@ -60,6 +60,25 @@ For local development, you can build and install the provider locally:
 go build -o terraform-provider-omni
 ```
 
+## Running Tests
+
+To run the tests, you'll need to provide your Omni provider details in provider_test.go file
+
+Then you can run the tests using:
+
+```bash
+# Run all tests
+go test ./...
+
+# Run tests with verbose output
+go test -v ./...
+
+# Run tests for a specific package
+go test ./internal/omni/...
+```
+
+Note: The tests require a running Omni instance and valid credentials to execute successfully.
+
 ## Features
 
 Currently, the provider supports the following features:
@@ -67,7 +86,11 @@ Currently, the provider supports the following features:
 ### Data Sources
 
 - `omni_machines` - List all machines in the Omni cluster
-- `omni_installation_media` Generate the schematic and pxe url
+- `omni_installation_media` - Generate the schematic and pxe url
+
+### Resources
+
+- `omni_apply_yaml` - Apply YAML configurations to the Omni cluster
 
 ## Provider Configuration
 

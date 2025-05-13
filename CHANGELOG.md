@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.0
+- Added `omni_apply_yaml` resource to apply YAML configurations to the Omni cluster
+- Create tests for omni_apply_yaml and omni_installation_media
+- Added examples and generated docs for `omni_apply_yaml`
+- Updated README.md
+
 ## v0.1.1
 - Generate docs with terraform-plugin-docs
 
